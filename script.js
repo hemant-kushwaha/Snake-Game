@@ -7,9 +7,18 @@ document.addEventListener("DOMContentLoaded", function () {
     let food =  {x:300 ,y:200};//{x:15x20, y:10x20}
     let snake = [{x:160,y:200},{x:140,y:200},{x:120,y:200}]; // {head,body,tail}
 
+    let intervalID ;
+
+
     //Inital Movement Direction 
     let dx = cellSize;
     let dy = 0;
+
+
+    function moveFood () {
+        
+    }
+
 
     function updateSnake () {
         const newHead = {x: snake[0].x + dx ,y: snake[0].y + dy};
@@ -74,8 +83,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
+    function isGameOver () {
+
+         //Snake Collision
+         for(let i = 1;i<snake.length; i++){
+             if (snake[0].x === snake[i].x && snake[0].y === snake[i].y){
+                return true;
+             }
+         }
+        //wall Collision
+        const hitLeftWall = snake[0].x < 0;
+        const hitRightWall = snake[0].x > areaSize;
+        const hitTopWall = snake [0].y < 0;
+        const hitBottomWall = snake[0].y > areaSize;
+
+        return hitLeftWall || hitBottomWall || hitTopWall || hitRightWall;
+    }
+
    function gameLoop () {
-    setInterval (() => {
+    intervalID = setInterval (() => {
+        if(isGameOver()){
+            clearInterval(intervalID);
+            gameStarted = false;
+            return;
+        }
         updateSnake();
         drawSnakeAndFood();
     },200)
