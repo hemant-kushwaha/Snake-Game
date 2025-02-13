@@ -16,7 +16,10 @@ document.addEventListener("DOMContentLoaded", function () {
     let gameSpeed = 200;
     let isPaused = false;
 
-    //Sound
+    //Sound effects
+    const eatSound = new Audio("music/food.mp3"); // Play when food is eaten
+    const moveSound = new Audio("music/move.mp3"); // Play when arrow key is pressed
+    const gameOverSound = new Audio("music/gameover.mp3"); // Play when game ends
 
     function moveFood () {
         let newX, newY ;
@@ -37,6 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
         //check food Collision
         if(newHead.x == food.x && newHead.y == food.y){
             score += 10;
+            eatSound.play();
             moveFood (); 
 
             if(gameSpeed > 50) {
@@ -51,6 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function changeDirection(e) {
         console.log("key pressed", e);
+        moveSound.play(); // 🔊 Play keypress sound
 
         const isGoingDown = dy === cellSize;
         const isGoingUp = dy === -cellSize;
@@ -123,8 +128,9 @@ document.addEventListener("DOMContentLoaded", function () {
         drawScoreBoard();
         if(isGameOver()){
             clearInterval(intervalID);
-            gameStarted = false;     
-            alert("Game Over \n " + `Your Score : ${score}`);   
+            gameStarted = false;
+            gameOverSound.play(); // 🔊 Play game over sound       
+            alert("Game Over \n " + `Your Score : ${score}`); 
             location.reload(); // Refresh the page after alert is closed       
             return;
         }
@@ -132,7 +138,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function runGame () {
-       
             document.addEventListener("keydown",changeDirection);
             gameLoop ();
         
@@ -145,7 +150,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function initiateGame(){
-
         const scoreBoard = document.createElement('div');
         scoreBoard.id='score-board' ;
 
