@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const gameArena = document.getElementById("game-arena");
-    const areaSize = 600;
+    const areaSizeW = 600;
+    const areaSizeH = 500;
     const cellSize = 20;
     let score = 0;
     let gameStarted = false;
@@ -8,19 +9,21 @@ document.addEventListener("DOMContentLoaded", function () {
     let snake = [{x:160,y:200},{x:140,y:200},{x:120,y:200}]; // {head,body,tail}
 
 
-
     //Inital Movement Direction 
     let dx = cellSize;
     let dy = 0;
     let intervalID ;
     let gameSpeed = 200;
+    let isPaused = false;
+
+    //Sound
 
     function moveFood () {
         let newX, newY ;
 
         do {
             newX = Math.floor(Math.random() *30) * cellSize;
-            newY = Math.floor(Math.random () * 30) * cellSize;
+            newY = Math.floor(Math.random () * 25) * cellSize;
 
         } while (snake.some(snakeCell => snakeCell.x === newX &&  snakeCell.y === newY));
 
@@ -106,47 +109,70 @@ document.addEventListener("DOMContentLoaded", function () {
          }
         //wall Collision
         const hitLeftWall = snake[0].x < 0;
-        const hitRightWall = snake[0].x > areaSize - cellSize;
+        const hitRightWall = snake[0].x > areaSizeW - cellSize;
         const hitTopWall = snake [0].y < 0;
-        const hitBottomWall = snake[0].y > areaSize - cellSize;
+        const hitBottomWall = snake[0].y > areaSizeH - cellSize;
 
         return hitLeftWall || hitBottomWall || hitTopWall || hitRightWall;
     }
 
    function gameLoop () {
     intervalID = setInterval (() => {
-        if(isGameOver()){
-            clearInterval(intervalID);
-            gameStarted = false;
-            return;
-        }
         updateSnake();
         drawSnakeAndFood();
+        drawScoreBoard();
+        if(isGameOver()){
+            clearInterval(intervalID);
+            gameStarted = false;     
+            alert("Game Over \n " + `Your Score : ${score}`);   
+            location.reload(); // Refresh the page after alert is closed       
+            return;
+        }
     },gameSpeed);
     }
 
     function runGame () {
-        if(!gameStarted){
-            gameStarted = true;
+       
             document.addEventListener("keydown",changeDirection);
             gameLoop ();
-        }
+        
+    }
+
+
+    function drawScoreBoard () {
+        const scoreBoard = document.getElementById('score-board');
+        scoreBoard.textContent =`Score : ${score}`;
     }
 
     function initiateGame(){
+
         const scoreBoard = document.createElement('div');
         scoreBoard.id='score-board' ;
 
         document.body.insertBefore(scoreBoard,gameArena);
+        scoreBoard.textContent =`Score : ${score}`;
+
 
         const startButton = document.createElement('button');
         startButton.textContent = "Start Game";
         startButton.classList.add("start-button");
 
         startButton.addEventListener("click" ,function StartGame () {
-            startButton.style.display = 'none';
+            if(!gameStarted){
+                gameStarted = true;
+                runGame();
+                startButton.textContent = "Pause Game";
+            } else {
+                if(isPaused) {
+                    runGame();
+                    startButton.textContent = "Pause Game";
+                } else {
+                    clearInterval(intervalID);
+                    startButton.textContent = "Resume Game";
+                }
+                isPaused = !isPaused;
 
-            runGame();
+            }
         })  
 
         document.body.appendChild(startButton);

@@ -4,32 +4,39 @@ body{
     align-items: center;
     justify-content: center;
     height: 100vh;
-    /* background-image: ; */
-    background-color: rgb(152, 231, 152);
+    background-image: url("123.jpg");
+    background-position: fixed; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
     text-align: center;
 }
 
 #game-arena{
     width: 600px;
-    height: 600px;
-    background-color: #333;
+    height: 500px;
+    background-color: #364a54;
     position: relative;
-    border: 5px solid #666;
+    border: 5px solid #2a2747;
     margin-bottom: 20px;
     box-shadow: 0 0 20px rgba(0,0,0,0.5);
 }
-
-#score-board {
-    font-size: x-large;
-    font-weight: bold;
+#play-again{
     color: black;
-    margin: 10px 0;
+}
+#score-board {
+    background-color: rgb(148, 12, 132);
+    padding: 10px 20px;
+    font-size: 27px;
+    font-weight: 650;
+    border-radius: 6px;
+    color: rgb(5, 248, 127);
+    margin: 15px 0;
 }
 
 .start-button {
     background-color: orangered;
     color: white;
-    padding: 15px 30px;
+    padding: 15px 120px;
     text-align: center;
     text-decoration: none;
     font-size: 18px;
