@@ -2,6 +2,9 @@
 
 This is a simple Snake Game built using HTML, CSS, and JavaScript. The game allows players to control a snake using arrow keys, eat food to grow in size, and avoid collisions with walls and itself.
 
+## 📸 Screenshots
+![Snake Game Screenshot](https://github.com/hemant-kushwaha/Snake-Game/blob/main/Screenshot.png)
+
 ## ✨ Features
 - 🎨 **Good Emoji Background:** The game features a fun emoji-themed background.
 - 🐍 **Classic Snake Gameplay:** Control the snake using arrow keys.
@@ -10,10 +13,6 @@ This is a simple Snake Game built using HTML, CSS, and JavaScript. The game allo
 - 🔊 **Sound Effects:** Includes sounds for movement, eating food, and game over.
 - ⏸️ **Pause and Resume:** Players can pause and resume the game.
 - 🏆 **Score Tracking:** Displays the current score in real-time.
-
-## 📸 Screenshots
-![Snake Game Screenshot](https://github.com/hemant-kushwaha/Snake-Game/blob/main/Screenshot.png)
-
 
 ## 🛠 Technologies Used
 - 🌐 **HTML** for structuring the game area.
