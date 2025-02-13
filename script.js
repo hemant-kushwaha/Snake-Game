@@ -7,18 +7,25 @@ document.addEventListener("DOMContentLoaded", function () {
     let food =  {x:300 ,y:200};//{x:15x20, y:10x20}
     let snake = [{x:160,y:200},{x:140,y:200},{x:120,y:200}]; // {head,body,tail}
 
-    let intervalID ;
 
 
     //Inital Movement Direction 
     let dx = cellSize;
     let dy = 0;
-
+    let intervalID ;
+    let gameSpeed = 200;
 
     function moveFood () {
-        
-    }
+        let newX, newY ;
 
+        do {
+            newX = Math.floor(Math.random() *30) * cellSize;
+            newY = Math.floor(Math.random () * 30) * cellSize;
+
+        } while (snake.some(snakeCell => snakeCell.x === newX &&  snakeCell.y === newY));
+
+        food  = {x:newX, y:newY};
+    }
 
     function updateSnake () {
         const newHead = {x: snake[0].x + dx ,y: snake[0].y + dy};
@@ -27,7 +34,13 @@ document.addEventListener("DOMContentLoaded", function () {
         //check food Collision
         if(newHead.x == food.x && newHead.y == food.y){
             score += 10;
-            //todo MOVE FOOD
+            moveFood (); 
+
+            if(gameSpeed > 50) {
+                clearInterval(intervalID);
+                gameSpeed -= 10;
+                gameLoop();
+            }
         } else {
             snake.pop();
         }
@@ -93,9 +106,9 @@ document.addEventListener("DOMContentLoaded", function () {
          }
         //wall Collision
         const hitLeftWall = snake[0].x < 0;
-        const hitRightWall = snake[0].x > areaSize;
+        const hitRightWall = snake[0].x > areaSize - cellSize;
         const hitTopWall = snake [0].y < 0;
-        const hitBottomWall = snake[0].y > areaSize;
+        const hitBottomWall = snake[0].y > areaSize - cellSize;
 
         return hitLeftWall || hitBottomWall || hitTopWall || hitRightWall;
     }
@@ -109,7 +122,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         updateSnake();
         drawSnakeAndFood();
-    },200)
+    },gameSpeed);
     }
 
     function runGame () {
