@@ -12,7 +12,7 @@ This is a simple Snake Game built using HTML, CSS, and JavaScript. The game allo
 - 🏆 **Score Tracking:** Displays the current score in real-time.
 
 ## 📸 Screenshots
-(Add screenshots of the game here)
+![Snake Game Screenshot] (https://github.com/hemant-kushwaha/Snake-Game/blob/main/Screenshot.png)
 
 ## 🛠 Technologies Used
 - 🌐 **HTML** for structuring the game area.
