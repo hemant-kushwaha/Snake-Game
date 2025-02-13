@@ -4,6 +4,7 @@ body{
     align-items: center;
     justify-content: center;
     height: 100vh;
+    /* background-image: ; */
     background-color: rgb(152, 231, 152);
     text-align: center;
 }
