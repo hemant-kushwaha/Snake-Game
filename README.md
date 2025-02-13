@@ -1,4 +1,3 @@
-```markdown
 # 🐍 Snake Game
 
 This is a simple Snake Game built using HTML, CSS, and JavaScript. The game allows players to control a snake using arrow keys, eat food to grow in size, and avoid collisions with walls and itself.
@@ -36,36 +35,3 @@ This is a simple Snake Game built using HTML, CSS, and JavaScript. The game allo
 1. Clone this repository:
    ```sh
    git clone https://github.com/yourusername/snake-game.git
-   ```
-2. Navigate to the project folder:
-   ```sh
-   cd snake-game
-   ```
-3. Open `index.html` in your browser to start playing.
-
-## Folder Structure
-```
-Snake-Game/
-│-- index.html
-│-- styles.css
-│-- script.js
-│-- music/
-│   │-- food.mp3
-│   │-- move.mp3
-│   │-- gameover.mp3
-│-- README.md
-```
-
-## Future Enhancements
-- Add different difficulty levels.
-- Implement a high-score leaderboard.
-- Improve graphics and animations.
-- Add touch support for mobile devices.
-
-## Author
-[Your Name] - Developed this project as a fun JavaScript game.
-
-## License
-This project is open-source and free to use.
-```
-
